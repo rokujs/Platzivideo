@@ -1,8 +1,21 @@
-body{
-    margin: 0;
-    background-color: red;
+@import "./Vars.scss";
+@import "./Media.scss";
+
+* {
+  font-family: $theme-font;
 }
 
-div {
-    color: white;
+body {
+  background: linear-gradient(#4A6EFF, #A63DFF);
+}
+.letters {
+  font-size: 14px;
+  color: white;
+}
+.letters a {
+  text-decoration: none;
+}
+
+.letters a:hover {
+  text-decoration: underline;
 }
