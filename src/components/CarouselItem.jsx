@@ -1,21 +1,40 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setFavorite, deleteFavorite } from '../actions';
 
 import '../assets/styles/components/CarouselItem.scss';
 
-const CarouselItem = ({ cover, title, year, contentRating, duration }) => (
-  <div className='container-item'>
-    <img tabIndex='0' src={cover} alt={title} className='container-item__img' />
-    <div className='container-item__details'>
-      <div>
-        <i className='fas fa-play-circle'> </i>
-        <i className='fas fa-plus-circle'> </i>
+const CarouselItem = (props) => {
+  const { id, cover, title, year, contentRating, duration, isList } = props;
+  const handleSetFavorite = () => {
+    props.setFavorite({
+      id, cover, title, year, contentRating, duration,
+    });
+  };
+  const handleDeleteFavorite = (itemId) => {
+    props.deleteFavorite(itemId);
+  };
+  return (
+    <div className='container-item'>
+      <img src={cover} alt={title} className='container-item__img' />
+      <div className='container-item__details'>
+        <div>
+          <Link to={`/player/${id}`}>
+            <i className='fas fa-play-circle play'> </i>
+          </Link>
+          {isList ?
+            <i className='fas fa-trash delete' onClick={() => handleDeleteFavorite(id)}> </i> :
+            <i className='fas fa-plus-circle plus' onClick={handleSetFavorite}> </i>}
+        </div>
+        <p className='carousel-item__details--title'>{title}</p>
+        <p className='container-item__details--subtitle'>{`${year} ${contentRating} ${duration}`}</p>
       </div>
-      <p className='carousel-item__details--title'>{title}</p>
-      <p className='container-item__details--subtitle'>{`${year} ${contentRating} ${duration}`}</p>
     </div>
-  </div>
-);
+  );
+};
 
 CarouselItem.propTypes = {
   cover: PropTypes.string,
@@ -25,4 +44,10 @@ CarouselItem.propTypes = {
   duration: PropTypes.number,
 };
 
-export default CarouselItem;
+const mapDispatchToProps = {
+  setFavorite,
+  deleteFavorite,
+};
+
+export default connect(null, mapDispatchToProps)(CarouselItem);
+

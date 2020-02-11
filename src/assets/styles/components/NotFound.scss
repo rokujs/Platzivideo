@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .main__content {
+    font-size: 90px;
+    animation-name: latido;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    margin: 0;
+  }

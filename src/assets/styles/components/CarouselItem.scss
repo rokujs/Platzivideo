@@ -53,12 +53,21 @@
   }
   
   .container-item__details div i {
-    color: green;
+    margin-right: 5px;
     font-size: 20px;
   }
   
   .container-item__details p {
     color: white;
     font-size: 10px;
+  }
+  .delete {
+    color: red;
+  }
+  .plus {
+    color: #00a2ff;
+  }
+  .play {
+    color: green;
   }
   

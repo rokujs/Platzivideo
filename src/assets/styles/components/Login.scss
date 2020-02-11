@@ -1,0 +1,97 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 30px;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .login__container {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+    border-radius: 40px;
+    box-shadow: grey 0px 0px 20px;
+    color: white;
+    padding: 65px 60px 40px;
+    min-height: 650px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .login__container--form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login__container--social-media > div {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .login__container--social-media div i {
+    font-size: 15px;
+    margin-right: 10px;
+  }
+  
+  .login__container--register a {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .form--remember {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+  }
+  
+  .form--input {
+    background-color: transparent;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 3px solid white;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    outline: none;
+    height: 50px;
+  }
+  
+  ::placeholder {
+    color: white;
+  }
+  
+  .form--button {
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 50px;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 50px;
+    margin: 15px 0;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .login__container--login {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .letters {
+    font-size: 14px;
+    color: white;
+  }
+  .letters a {
+    text-decoration: none;
+  }
+  
+  .letters a:hover {
+    text-decoration: underline;
+  }
