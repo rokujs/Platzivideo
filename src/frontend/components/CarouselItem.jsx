@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setFavorite, deleteFavorite } from '../actions';
 
 import '../assets/styles/components/CarouselItem.scss';
@@ -23,7 +24,7 @@ const CarouselItem = (props) => {
       <div className='container-item__details'>
         <div>
           <Link to={`/player/${id}`}>
-            <i className='fas fa-play-circle play'> </i>
+            <FontAwesomeIcon icon={['fas', 'play-circle']} className='play' />
           </Link>
           {isList ?
             <i className='fas fa-trash delete' onClick={() => handleDeleteFavorite(id)}> </i> :
