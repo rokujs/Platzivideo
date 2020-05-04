@@ -35,12 +35,12 @@ const Header = (props) => {
           <ul>
             <li>
               <Link to='/login'>
-              Inisiar sesión
+                Inisiar sesión
               </Link>
             </li>
             <li>
               <Link to='/register'>
-              Registrate
+                Registrate
               </Link>
             </li>
           </ul>

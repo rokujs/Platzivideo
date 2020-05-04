@@ -24,11 +24,11 @@ const CarouselItem = (props) => {
       <div className='container-item__details'>
         <div>
           <Link to={`/player/${id}`}>
-            <FontAwesomeIcon icon={['fas', 'play-circle']} className='play' />
+            <FontAwesomeIcon icon='play-circle' className='play' />
           </Link>
           {isList ?
-            <i className='fas fa-trash delete' onClick={() => handleDeleteFavorite(id)}> </i> :
-            <i className='fas fa-plus-circle plus' onClick={handleSetFavorite}> </i>}
+            <FontAwesomeIcon icon='trash' className='delete' onClick={() => handleDeleteFavorite(id)} /> :
+            <FontAwesomeIcon icon='plus-circle' className='plus' onClick={handleSetFavorite} />}
         </div>
         <p className='carousel-item__details--title'>{title}</p>
         <p className='container-item__details--subtitle'>{`${year} ${contentRating} ${duration}`}</p>

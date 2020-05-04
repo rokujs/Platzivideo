@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose } from 'redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faPlayCircle, faTrash, faPlusCircle, faRadiation } from '@fortawesome/free-solid-svg-icons';
 import App from './router/App';
 import reducer from './reducers';
 
-library.add(fab, fas);
+library.add(faGoogle, faTwitter, faPlayCircle, faTrash, faPlusCircle, faRadiation);
 
 const initialState = {
   'user': {},

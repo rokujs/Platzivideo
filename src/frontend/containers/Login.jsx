@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { loginRequest } from '../actions';
 
 import '../assets/styles/components/Login.scss';
@@ -48,7 +50,8 @@ const Login = (props) => {
           <button className='form--button letters'>Inicio de sesión</button>
           <div className='form--remember letters'>
             <label>
-              <input type='checkbox' id='boxRemember' value='boxRem' /> Recuérdame
+              <input type='checkbox' id='boxRemember' value='boxRem' />
+              Recuérdame
             </label>
             <a href='/'>¿Olvidé mi contraseña?</a>
           </div>
@@ -56,15 +59,21 @@ const Login = (props) => {
 
         <div className='login__container--social-media letters'>
           <div>
-            <i className='fab fa-google'> </i>Inicia sesión con Google
+            <span>
+              <FontAwesomeIcon icon={['fab', 'google']} />
+            </span>
+            Inicia sesión con Google
           </div>
           <div>
-            <i className='fab fa-twitter'> </i>Inicia sesión con Twitter
+            <span>
+              <FontAwesomeIcon icon={['fab', 'twitter']} />
+            </span>
+            Inicia sesión con Twitter
           </div>
         </div>
 
         <p className='login__container--register letters'>
-          No tienes ninguna cuenta {' '}
+          No tienes ninguna cuenta
           <Link to='/register'>
             Regístrate.
           </Link>

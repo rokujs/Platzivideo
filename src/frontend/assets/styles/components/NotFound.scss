@@ -8,9 +8,26 @@
   }
   
   .main__content {
+    color: white;
     font-size: 90px;
     animation-name: latido;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
     margin: 0;
+  }
+
+  @keyframes latido {
+    0% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .main__parafo > span {
+    margin: 0px 20px;
   }
