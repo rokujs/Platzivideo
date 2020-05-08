@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 import Home from '../containers/Home';
 import Login from '../containers/Login';
 import Register from '../containers/Register';
@@ -8,22 +7,22 @@ import Player from '../containers/Player';
 const routes = [
   {
     exact: true,
-    path: "/",
+    path: '/',
     component: Home,
   },
   {
     exact: true,
-    path: "/login",
+    path: '/login',
     component: Login,
   },
   {
     exact: true,
-    path: "/register",
+    path: '/register',
     component: Register,
   },
   {
     exact: true,
-    path: "/Player/:id",
+    path: '/Player/:id',
     component: Player,
   },
   {

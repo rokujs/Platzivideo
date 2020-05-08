@@ -11,6 +11,7 @@ import logo from '../assets/static/logo.png';
 const Header = (props) => {
   const { user } = props;
   const hasUser = Object.keys(user).length > 0;
+
   const handleLogout = () => {
     props.logoutRequest({});
   };
