@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 import express from 'express';
-import dotenv from 'dotenv';
 import webpack from 'webpack';
 import React from 'react';
 import helmet from 'helmet';
@@ -14,8 +13,6 @@ import reducer from '../frontend/reducers';
 import initialState from '../frontend/initialState';
 import config from './config/index';
 import getManifest from './getManifest';
-
-dotenv.config();
 
 const { ENV, PORT } = config;
 const app = express();
