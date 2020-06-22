@@ -59,6 +59,7 @@ const setResponse = (html, preloadedState, manifest) => {
   <html lang="es">
   <head>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="${mainStyles}" type="text/css">
       <title>Platzi Video</title>
   </head>
@@ -127,13 +128,21 @@ app.post('/auth/sign-up', async (req, res, next) => {
   const { body: user } = req;
 
   try {
-    await axios({
-      url: `${config.apiUrl}/api/auth/sign-up`,
+    const userData = await axios({
+      url: `${process.env.API_URL}/api/auth/sign-up`,
       method: 'post',
-      data: user,
+      data: {
+        'email': user.email,
+        'name': user.name,
+        'password': user.password,
+      },
     });
 
-    res.status(201).json({ massage: 'user created' });
+    res.status(201).json({
+      name: req.body.name,
+      email: req.body.email,
+      id: userData.data.id,
+    });
   } catch (error) {
     next(error);
   }
@@ -142,5 +151,5 @@ app.post('/auth/sign-up', async (req, res, next) => {
 app.get('*', renderApp);
 
 app.listen(PORT, (err) => {
-  err ? console.error(errr) : console.log(`Server running on port  ${PORT}`);
+  err ? console.error(err) : console.log(`Server running on port  ${PORT}`);
 });

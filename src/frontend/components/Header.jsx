@@ -53,6 +53,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   user: PropTypes.object,
+  logoutRequest: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

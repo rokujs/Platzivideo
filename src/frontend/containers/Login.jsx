@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,7 +35,6 @@ const Login = (props) => {
           <form className='login__container--form' onSubmit={handleSubmit}>
             <input
               name='email'
-              aria-label='Correo'
               type='text'
               placeholder='Correo'
               className='form--input'
@@ -42,7 +42,6 @@ const Login = (props) => {
             />
             <input
               name='password'
-              aria-label='Contraseña'
               type='password'
               placeholder='Contraseña'
               className='form--input'
@@ -87,6 +86,10 @@ const Login = (props) => {
 
 const mapDispatchToProps = {
   loginRequest,
+};
+
+Login.propTypes = {
+  loginRequest: PropTypes.func,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

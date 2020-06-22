@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getVideoSource } from '../actions';
 import NotFound from './NotFound';
@@ -24,6 +25,10 @@ const Player = (props) => {
       </div>
     </div>
   ) : <NotFound />;
+};
+
+Player.propTypes = {
+  getVideoSource: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
