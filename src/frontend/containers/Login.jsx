@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { loginRequest } from '../actions';
+import { loginUser } from '../actions';
 import Header from '../components/Header';
 
 import '../assets/styles/components/Login.scss';
@@ -22,7 +22,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginRequest(form);
+    props.loginUser(form, '/');
     props.history.push('/');
   };
   return (
@@ -47,7 +47,7 @@ const Login = (props) => {
               className='form--input'
               onChange={handleInput}
             />
-            <button className='form--button letters' type='button'>Inicio de sesión</button>
+            <button className='form--button letters' type='submit'>Inicio de sesión</button>
             <div className='form--remember letters'>
               <label htmlFor='boxRemember'>
                 <input type='checkbox' id='boxRemember' value='boxRem' />
@@ -85,11 +85,11 @@ const Login = (props) => {
 };
 
 const mapDispatchToProps = {
-  loginRequest,
+  loginUser,
 };
 
 Login.propTypes = {
-  loginRequest: PropTypes.func,
+  loginUser: PropTypes.func,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

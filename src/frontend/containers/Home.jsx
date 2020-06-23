@@ -22,16 +22,6 @@ const Home = ({ myList, trends, originals, search }) => {
         </Categories>
       )}
 
-      {search.length > 0 && (
-        <Categories title='Busqueda'>
-          <Carousel>
-            {search.map((item) => (
-              <CarouselItem key={item.id} {...item} />
-            ))}
-          </Carousel>
-        </Categories>
-      )}
-
       <Categories title='Tendencias'>
         <Carousel>
           {
