@@ -13,10 +13,10 @@ import reducer from './reducers';
 
 library.add(faGoogle, faTwitter, faPlayCircle, faTrash, faPlusCircle, faRadiation);
 
-const history = createBrowserHistory();
-const preloadedState = window.__PRELOADED_STATE__;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const preloadedState = window.__PRELOADED_STATE__;
 const store = createStore(reducer, preloadedState, composeEnhancers(applyMiddleware(thunk)));
+const history = createBrowserHistory();
 
 delete window.__PRELOADED_STATE__;
 

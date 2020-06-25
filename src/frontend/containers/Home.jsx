@@ -7,7 +7,7 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 
-const Home = ({ myList, trends, originals, search }) => {
+const Home = ({ myList, trends, originals }) => {
   return (
     <>
       <Header />
@@ -45,8 +45,7 @@ const mapStateToProps = (state) => {
   return {
     myList: state.myList,
     trends: state.trends,
-    originals: state.originals,
-    search: state.search,
+    originals: state.originals
   };
 };
 

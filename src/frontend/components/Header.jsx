@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import gravatar from '../utils/gravatar';
 import { logoutRequest } from '../actions';
@@ -9,14 +10,23 @@ import '../assets/styles/components/header.scss';
 import logo from '../assets/static/logo.png';
 
 const Header = (props) => {
-  const { user } = props;
+  const { user, isLogin, isRegister } = props;
   const hasUser = Object.keys(user).length > 0;
+  const HeaderClass = classNames('header', {
+    isLogin,
+    isRegister,
+  });
 
   const handleLogout = () => {
+    document.cookie = 'email=';
+    document.cookie = 'name=';
+    document.cookie = 'id=';
+    document.cookie = 'token=';
     props.logoutRequest({});
+    window.location.href = '/login';
   };
   return (
-    <header className='header'>
+    <header className={HeaderClass}>
       <Link to='/'>
         <img className='header__img' src={logo} alt='logo' />
       </Link>
@@ -28,7 +38,7 @@ const Header = (props) => {
           </div>
           <ul>
             <li><a href='/'>{user.name}</a></li>
-            <li><a href='#logout' onClick={handleLogout}>Cerrar sesión</a></li>
+            <li><a onClick={handleLogout}>Cerrar sesión</a></li>
           </ul>
         </div>
       ) : (

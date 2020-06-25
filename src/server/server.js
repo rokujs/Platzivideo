@@ -72,21 +72,28 @@ const setResponse = (html, preloadedState, manifest) => {
   `);
 };
 
-const renderApp = (req, res) => {
+const renderApp = async (req, res) => {
 
   let initialState;
-  const { email, name, id } = req.cookies;
+  const { token, email, name, id } = req.cookies;
+  console.log(req.status);
 
-  if (id) {
+  try {
+    let movieList = await axios({
+      url: `${process.env.API_URL}/api/movies`,
+      headers: { Authorization: `Bearer ${token}`},
+      method: 'get',
+    });
+    movieList = movieList.data.data;
     initialState = {
       user: {
-        email, name, id,
+        id, email, name,
       },
       myList: [],
-      trends: [],
-      originals: []
+      trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
+      originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id),
     }
-  } else {
+  } catch (error) {
     initialState = {
       user: {},
       myList: [],
@@ -94,6 +101,7 @@ const renderApp = (req, res) => {
       originals: []
     }
   }
+
   const store = createStore(reducer, initialState);
   const preloadedState = store.getState();
   const isLogged = (initialState.user.id);
@@ -118,9 +126,9 @@ app.post('/auth/sign-in', async (req, res, next) => {
         next(boom.unauthorized());
       }
 
-      req.login(data, { session: false }, async (error) => {
-        if (error) {
-          next(error);
+      req.login(data, { session: false }, async (err) => {
+        if (err) {
+          next(err);
         }
 
         const { token, ...user } = data;
@@ -137,8 +145,8 @@ app.post('/auth/sign-in', async (req, res, next) => {
 
         res.status(200).json(user);
       });
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(err);
     }
   })(req, res, next);
 });
@@ -168,5 +176,5 @@ app.post('/auth/sign-up', async (req, res, next) => {
 app.get('*', renderApp);
 
 app.listen(PORT, (err) => {
-  err ? console.error(err) : console.log(`Server running on port  ${PORT}`);
+  err ? console.error(err) : console.log(`Server running on port  http://localhost:${PORT}`);
 });

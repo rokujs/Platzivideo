@@ -51,28 +51,27 @@ export const registerUser = (payload, redirectUrl) => {
   };
 };
 
-export const  loginUser = ({ email, password}, redirectUrl) => {
+export const loginUser = ({ email, password }, redirectUrl) => {
   return (dispatch) => {
     axios({
-      url: '/auth/sign-in',
+      url: '/auth/sign-in/',
       method: 'post',
       auth: {
         username: email,
         password,
       },
     })
-    .then(({data}) => {
-      document.cookie = `email=${data.user.email}`;
-      document.cookie = `name=${data.user.name}`;
-      document.cookie = `id=${data.user.id}`;
-      document.cookie = `token=${data.user.token}`;
-      dispatch(loginRequest(data.user));
-    })
-    .then(() => {
-      window.location.href = redirectUrl;
-    })
-    .catch((error) => dispatch(setError(error)));
+      .then(({ data }) => {
+        document.cookie = `email=${data.user.email}`;
+        document.cookie = `name=${data.user.name}`;
+        document.cookie = `id=${data.user.id}`;
+        dispatch(loginRequest(data.user));
+      })
+      .then(() => {
+        window.location.href = redirectUrl;
+      })
+      .catch((error) => dispatch(setError(error)));
   }
-}
+};
 
-export { setFavorite as defaut };
+export { setFavorite as default };

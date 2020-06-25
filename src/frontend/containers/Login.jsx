@@ -11,6 +11,8 @@ import '../assets/styles/components/Login.scss';
 const Login = (props) => {
   const [form, setValues] = useState({
     email: '',
+    id: '',
+    name: '',
   });
 
   const handleInput = (event) => {
@@ -23,7 +25,6 @@ const Login = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.loginUser(form, '/');
-    props.history.push('/');
   };
   return (
     <>
