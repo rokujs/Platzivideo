@@ -74,4 +74,22 @@ export const loginUser = ({ email, password }, redirectUrl) => {
   }
 };
 
+export const addFavorite = (movie) => {
+  const userId = document.cookie.match(/[0-9a-fA-F]{24}/)[0];
+  return (dispatch) => {
+    axios({
+      url: '/user-movies',
+      method: 'post',
+      data: {
+        movieId: movie._id,
+        userId,
+      },
+    })
+      .then(({ data }) => {
+        dispatch(setFavorite(movie))
+      })
+      .catch(error => dispatch(setError(error)));
+  }
+}
+
 export { setFavorite as default };

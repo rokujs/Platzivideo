@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { setFavorite, deleteFavorite } from '../actions';
+import { addFavorite, deleteFavorite } from '../actions';
 
 import '../assets/styles/components/CarouselItem.scss';
 
 const CarouselItem = (props) => {
   const { id, cover, title, year, contentRating, duration, isList } = props;
   const handleSetFavorite = () => {
-    props.setFavorite({
-      id, cover, title, year, contentRating, duration,
-    });
+    props.addFavorite(props);
   };
   const handleDeleteFavorite = (itemId) => {
     props.deleteFavorite(itemId);
@@ -46,7 +44,7 @@ CarouselItem.propTypes = {
 };
 
 const mapDispatchToProps = {
-  setFavorite,
+  addFavorite,
   deleteFavorite,
 };
 

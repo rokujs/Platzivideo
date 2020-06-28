@@ -76,20 +76,38 @@ const renderApp = async (req, res) => {
 
   let initialState;
   const { token, email, name, id } = req.cookies;
-  console.log(req.status);
 
   try {
     let movieList = await axios({
       url: `${process.env.API_URL}/api/movies`,
-      headers: { Authorization: `Bearer ${token}`},
+      headers: { Authorization: `Bearer ${token}` },
       method: 'get',
     });
+
+    let userMovies = await axios({
+      url: `${process.env.API_URL}/api/user-movies/?userId=${id}`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'get',
+    });
+
+    userMovies = userMovies.data.data;
     movieList = movieList.data.data;
+
+    let myList = [];
+
+    movieList.forEach(movie => {
+      userMovies.forEach(user => {
+        if (movie._id === user.movieId) {
+          myList.push(movie);
+        }
+      })
+    });
+
     initialState = {
       user: {
         id, email, name,
       },
-      myList: [],
+      myList,
       trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
       originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id),
     }
@@ -168,6 +186,49 @@ app.post('/auth/sign-up', async (req, res, next) => {
       email: req.body.email,
       id: userData.data.id,
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post("/user-movies", async function (req, res, next) {
+  try {
+    const { body: userMovie } = req;
+    const { token } = req.cookies;
+
+    const { data, status } = await axios({
+      url: `${process.env.API_URL}/api/user-movies`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'post',
+      data: userMovie,
+    });
+
+    if (status !== 201) {
+      return next(boom.badImplementation());
+    }
+
+    res.status(201).json(data);
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.delete("/user-movies/:userMovieId", async function (req, res, next) {
+  try {
+    const { userMovieId } = req.params;
+    const { token } = req.cookies;
+
+    const { data, status } = await axios({
+      url: `${process.env.API_URL}/api/user-movies/${userMovieId}`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'delete',
+    });
+
+    if (status !== 200) {
+      return next(boom.badImplementation());
+    }
+
+    res.status(200).json(data);
   } catch (error) {
     next(error);
   }
