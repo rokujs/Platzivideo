@@ -93,12 +93,22 @@ const renderApp = async (req, res) => {
     userMovies = userMovies.data.data;
     movieList = movieList.data.data;
 
+    console.log('Esto esta dentro del userMovies:', userMovies[0]);
+
     let myList = [];
 
     movieList.forEach(movie => {
       userMovies.forEach(user => {
         if (movie._id === user.movieId) {
           myList.push(movie);
+        }
+      })
+    });
+
+    myList.forEach(movie => {
+      userMovies.forEach(user => {
+        if (movie._id === user.movieId) {
+          movie._id = user._id;
         }
       })
     });
@@ -214,9 +224,12 @@ app.post("/user-movies", async function (req, res, next) {
 });
 
 app.delete("/user-movies/:userMovieId", async function (req, res, next) {
+  console.log('si llege');
   try {
     const { userMovieId } = req.params;
     const { token } = req.cookies;
+
+    console.log('esto viene en el req:', req.params);
 
     const { data, status } = await axios({
       url: `${process.env.API_URL}/api/user-movies/${userMovieId}`,

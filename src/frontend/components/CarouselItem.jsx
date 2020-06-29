@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { addFavorite, deleteFavorite } from '../actions';
+import { addFavorite, deleteMovie } from '../actions';
 
 import '../assets/styles/components/CarouselItem.scss';
 
 const CarouselItem = (props) => {
-  const { id, cover, title, year, contentRating, duration, isList } = props;
+  const { _id, id, cover, title, year, contentRating, duration, isList } = props;
   const handleSetFavorite = () => {
     props.addFavorite(props);
   };
   const handleDeleteFavorite = (itemId) => {
-    props.deleteFavorite(itemId);
+    props.deleteMovie(itemId);
   };
   return (
     <div className='container-item'>
@@ -25,7 +25,7 @@ const CarouselItem = (props) => {
             <FontAwesomeIcon icon='play-circle' className='play' />
           </Link>
           {isList ?
-            <FontAwesomeIcon icon='trash' className='delete' onClick={() => handleDeleteFavorite(id)} /> :
+            <FontAwesomeIcon icon='trash' className='delete' onClick={() => handleDeleteFavorite(_id)} /> :
             <FontAwesomeIcon icon='plus-circle' className='plus' onClick={handleSetFavorite} />}
         </div>
         <p className='carousel-item__details--title'>{title}</p>
@@ -45,7 +45,7 @@ CarouselItem.propTypes = {
 
 const mapDispatchToProps = {
   addFavorite,
-  deleteFavorite,
+  deleteMovie,
 };
 
 export default connect(null, mapDispatchToProps)(CarouselItem);

@@ -92,4 +92,22 @@ export const addFavorite = (movie) => {
   }
 }
 
+export const deleteMovie = (movieId) => {
+  const userId = document.cookie.match(/[0-9a-fA-F]{24}/)[0];
+  return (dispatch) => {
+    axios({
+      url: `/user-movies/${movieId}`,
+      method: 'delete',
+      data: {
+        userId,
+      },
+    })
+      .then(({ data }) => {
+        console.log('data delete', data);
+        dispatch(deleteFavorite(movieId));
+      })
+      .catch(error => dispatch(setError(error)));
+  }
+}
+
 export { setFavorite as default };
